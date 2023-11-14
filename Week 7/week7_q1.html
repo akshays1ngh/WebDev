@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        #welcome-message {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function setCookies() {
+            // Get the user's name from the input field
+            const userName = document.getElementById("name-input").value;
+
+            // Create a Date object to get the current date and time
+            const currentDate = new Date();
+
+            // Set the expiration date for the cookie (in this example, set it to expire in 7 days)
+            currentDate.setDate(currentDate.getDate() + 7);
+
+            // Convert the date to a string in the "UTC" format
+            const expirationDate = currentDate.toUTCString();
+
+            // Create a cookie string with the user's name and the expiration date
+            document.cookie = `userName=${encodeURIComponent(userName)}; expires=${expirationDate}`;
+
+            // Display the welcome message
+            displayWelcomeMessage(userName);
+        }
+
+        function getCookie(name) {
+            // Split the cookies into an array based on the semicolon
+            const cookies = document.cookie.split(";");
+
+            // Iterate through the cookies
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+
+                // Check if the cookie starts with the specified name
+                if (cookie.startsWith(name + "=")) {
+                    // Return the value of the cookie
+                    return decodeURIComponent(cookie.substring(name.length + 1));
+                }
+            }
+
+            // Return null if the cookie is not found
+            return null;
+        }
+
+        function displayWelcomeMessage(userName) {
+            const welcomeMessage = document.getElementById("welcome-message");
+
+            // Display the welcome message with the user's name
+            welcomeMessage.textContent = `Welcome, ${userName}!`;
+
+            // Show the welcome message container
+            welcomeMessage.style.display = "block";
+        }
+
+        window.onload = function () {
+            // Get the user's name from the cookie
+            const userNameFromCookie = getCookie("userName");
+
+            // Display the welcome message if the user's name is found in the cookie
+            if (userNameFromCookie) {
+                displayWelcomeMessage(userNameFromCookie);
+            }
+        };
+    </script>
+</head>
+<body>
+
+<h2>Welcome to the Cookies Example</h2>
+
+<p>Enter your name:</p>
+<input type="text" id="name-input">
+<button onclick="setCookies()">Set Cookies</button>
+
+<div id="welcome-message" style="display: none;"></div>
+
+</body>
+</html>

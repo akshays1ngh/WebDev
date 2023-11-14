@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freehand Drawing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        canvas {
+            border: 1px solid #ccc;
+            cursor: crosshair;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            // Get the canvas element and its 2d context
+            const canvas = document.getElementById("myCanvas");
+            const context = canvas.getContext("2d");
+
+            // Set initial drawing properties
+            let isDrawing = false;
+            context.lineWidth = 2;
+            context.lineJoin = "round";
+            context.lineCap = "round";
+            context.strokeStyle = "#000";
+
+            // Add event listeners for mouse down, move, and up
+            canvas.addEventListener("mousedown", startDrawing);
+            canvas.addEventListener("mousemove", draw);
+            canvas.addEventListener("mouseup", stopDrawing);
+            canvas.addEventListener("mouseout", stopDrawing);
+
+            function startDrawing(event) {
+                isDrawing = true;
+                context.beginPath();
+                context.moveTo(event.clientX - canvas.getBoundingClientRect().left, event.clientY - canvas.getBoundingClientRect().top);
+            }
+
+            function draw(event) {
+                if (!isDrawing) return;
+
+                context.lineTo(event.clientX - canvas.getBoundingClientRect().left, event.clientY - canvas.getBoundingClientRect().top);
+                context.stroke();
+            }
+
+            function stopDrawing() {
+                isDrawing = false;
+                context.closePath();
+            }
+        };
+    </script>
+</head>
+<body>
+
+<h2>Freehand Drawing</h2>
+
+<canvas id="myCanvas" width="400" height="300"></canvas>
+
+</body>
+</html>
