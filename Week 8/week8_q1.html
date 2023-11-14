@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Jobs Wizard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        #wizard-container {
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="wizard-container">
+    <div id="step1" class="step">
+        <h2>Step 1: Personal Information</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        <br>
+        <button onclick="nextStep()">Next</button>
+    </div>
+
+    <div id="step2" class="step">
+        <h2>Step 2: Education</h2>
+        <label for="degree">Degree:</label>
+        <input type="text" id="degree" required>
+        <br>
+        <label for="institute">Institute:</label>
+        <input type="text" id="institute" required>
+        <br>
+        <button onclick="prevStep()">Previous</button>
+        <button onclick="nextStep()">Next</button>
+    </div>
+
+    <div id="step3" class="step">
+        <h2>Step 3: Experience</h2>
+        <label for="jobTitle">Job Title:</label>
+        <input type="text" id="jobTitle" required>
+        <br>
+        <label for="years">Years of Experience:</label>
+        <input type="number" id="years" required>
+        <br>
+        <button onclick="prevStep()">Previous</button>
+        <button onclick="submitForm()">Submit</button>
+    </div>
+</div>
+
+<script>
+    let currentStep = 1;
+
+    function nextStep() {
+        document.getElementById(`step${currentStep}`).style.display = "none";
+        currentStep++;
+        document.getElementById(`step${currentStep}`).style.display = "block";
+    }
+
+    function prevStep() {
+        document.getElementById(`step${currentStep}`).style.display = "
