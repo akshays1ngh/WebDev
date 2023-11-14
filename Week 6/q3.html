@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f2f2f2;
+        }
+
+        #game-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #guess-input {
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        #tries-left {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        // Generate a random number between 1 and 10
+        const randomNumber = Math.floor(Math.random() * 10) + 1;
+        let tries = 5;
+
+        function guessNumber() {
+            const userGuess = document.getElementById("guess-input").value;
+            const resultMessage = document.getElementById("result");
+            const triesLeftMessage = document.getElementById("tries-left");
+
+            if (userGuess == randomNumber) {
+                resultMessage.textContent = "Congratulations! You guessed the correct number!";
+                resultMessage.style.color = "green";
+                disableInputAndButton();
+            } else {
+                tries--;
+                if (tries > 0) {
+                    resultMessage.textContent = `Wrong guess! You have ${tries} ${tries === 1 ? 'try' : 'tries'} left.`;
+                } else {
+                    resultMessage.textContent = `Sorry, you've run out of tries. The correct number was ${randomNumber}.`;
+                    resultMessage.style.color = "red";
+                    disableInputAndButton();
+                }
+                triesLeftMessage.textContent = `Tries left: ${tries}`;
+            }
+        }
+
+        function disableInputAndButton() {
+            document.getElementById("guess-input").disabled = true;
+            document.getElementById("guess-button").disabled = true;
+        }
+    </script>
+</head>
+<body>
+
+<div id="game-container">
+    <h2>Guess the Number Game</h2>
+    <p>Guess a number between 1 and 10:</p>
+    <input type="number" id="guess-input" min="1" max="10">
+    <button onclick="guessNumber()" id="guess-button">Submit Guess</button>
+    <p id="result"></p>
+    <p id="tries-left">Tries left: 5</p>
+</div>
+
+</body>
+</html>

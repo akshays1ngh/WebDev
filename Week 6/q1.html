@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Window Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+    </style>
+    <script>
+        function openNewWindow() {
+            // Open a new browser window
+            var newWindow = window.open("", "NewWindow", "width=400,height=300");
+
+            // Check if the new window is successfully opened
+            if (newWindow) {
+                // Write text to the new window
+                newWindow.document.write("<h1>Hello, this is a new window!</h1>");
+            } else {
+                alert("Oops! It seems that pop-ups are blocked in your browser. Please enable pop-ups for this site.");
+            }
+        }
+    </script>
+</head>
+<body>
+
+<h2>Open a New Window</h2>
+<button onclick="openNewWindow()">Open New Window</button>
+
+</body>
+</html>
