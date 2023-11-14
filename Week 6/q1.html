@@ -3,33 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Window Example</title>
+    <title>JavaScript Boxes</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
+            margin: 20px;
+        }
+
+        section {
+            margin-bottom: 20px;
         }
     </style>
-    <script>
-        function openNewWindow() {
-            // Open a new browser window
-            var newWindow = window.open("", "NewWindow", "width=400,height=300");
-
-            // Check if the new window is successfully opened
-            if (newWindow) {
-                // Write text to the new window
-                newWindow.document.write("<h1>Hello, this is a new window!</h1>");
-            } else {
-                alert("Oops! It seems that pop-ups are blocked in your browser. Please enable pop-ups for this site.");
-            }
-        }
-    </script>
 </head>
 <body>
 
-<h2>Open a New Window</h2>
-<button onclick="openNewWindow()">Open New Window</button>
+    <h1>JavaScript Boxes</h1>
+
+    <section>
+        <h2>Alert Box</h2>
+        <p>An alert box is often used to inform the user about something important or to display a warning message.</p>
+        <button onclick="showAlert()">Show Alert</button>
+    </section>
+
+    <section>
+        <h2>Confirm Box</h2>
+        <p>A confirm box is used to get the user's confirmation before proceeding with an action.</p>
+        <button onclick="showConfirm()">Show Confirm Box</button>
+    </section>
+
+    <section>
+        <h2>Prompt Box</h2>
+        <p>A prompt box is used to prompt the user to enter some information.</p>
+        <button onclick="showPrompt()">Show Prompt Box</button>
+    </section>
+
+    <script>
+        function showAlert() {
+            alert('This is an alert box!');
+        }
+
+        function showConfirm() {
+            var result = confirm('Do you want to proceed?');
+            if (result) {
+                alert('You clicked OK!');
+            } else {
+                alert('You clicked Cancel!');
+            }
+        }
+
+        function showPrompt() {
+            var userInput = prompt('Please enter your name:', 'John Doe');
+            if (userInput !== null) {
+                alert('Hello, ' + userInput + '!');
+            }
+        }
+    </script>
 
 </body>
 </html>
