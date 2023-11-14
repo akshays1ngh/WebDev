@@ -1,0 +1,11 @@
+*{
+    box-sizing: border-box;
+}
+.red{
+    color: red;
+}
+input.error {
+    border: 1px red inset;
+    padding: 2px; 
+}
+    
